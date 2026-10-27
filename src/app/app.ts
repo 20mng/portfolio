@@ -4,10 +4,11 @@ import { Hero } from './components/hero/hero';
 import { PageSection } from './components/page-section/page-section';
 import { Experience } from './components/experience/experience';
 import { TechStack } from './components/tech-stack/tech-stack';
-import { Education } from './components/education/education';
+// import { Education } from './components/education/education';
 import { Contact } from './components/contact/contact';
 import {
   CERTIFICATIONS,
+  CORE_STACK,
   EDUCATION,
   EXPERIENCE,
   PROFILE,
@@ -17,7 +18,7 @@ import {
 
 @Component({
   selector: 'app-root',
-  imports: [SiteHeader, Hero, PageSection, Experience, TechStack, Education, Contact],
+  imports: [SiteHeader, Hero, PageSection, Experience, TechStack, Contact],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
@@ -25,6 +26,7 @@ export class App {
   protected readonly profile = PROFILE;
   protected readonly layers = STACK_LAYERS;
   protected readonly experience = EXPERIENCE;
+  protected readonly coreStack = CORE_STACK;
   protected readonly techGroups = TECH_GROUPS;
   protected readonly education = EDUCATION;
   protected readonly certifications = CERTIFICATIONS;

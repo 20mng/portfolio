@@ -37,6 +37,11 @@ export interface Job {
   highlights?: string[];
 }
 
+export interface CoreTech {
+  name: string;
+  description: string;
+}
+
 export interface TechGroup {
   name: string;
   items: string[];
