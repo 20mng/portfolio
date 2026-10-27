@@ -1,0 +1,77 @@
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 40px;
+}
+
+.job {
+  position: relative;
+  padding-left: 28px;
+  border-left: 2px solid var(--line);
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: -7px;
+    top: 8px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--olive);
+  }
+  &.current::before {
+    background: var(--olive);
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 18px;
+    max-width: 64ch;
+  }
+  li {
+    margin-bottom: 6px;
+  }
+}
+
+.company {
+  color: var(--olive);
+  font-weight: 600;
+}
+
+.when {
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin: 2px 0 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+.project {
+  margin-top: 18px;
+
+  h4 {
+    font-size: 1.02rem;
+    font-weight: 600;
+    margin: 0 0 4px;
+  }
+}
+
+.tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 6px 0 10px;
+}
+
+.pending {
+  color: var(--muted);
+  font-style: italic;
+  margin: 0;
+}

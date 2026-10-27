@@ -1,0 +1,33 @@
+<div class="wrap">
+  <app-site-header [name]="profile.shortName" />
+
+  <main>
+    <app-hero [profile]="profile" [layers]="layers" />
+
+    <app-page-section id="sobre-mi" heading="Sobre mí">
+      <div class="prose">
+        @for (paragraph of profile.about; track $index) {
+          <p>{{ paragraph }}</p>
+        }
+      </div>
+    </app-page-section>
+
+    <app-page-section id="experiencia" heading="Experiencia">
+      <app-experience [jobs]="experience" />
+    </app-page-section>
+
+    <app-page-section id="tecnologias" heading="Tecnologías">
+      <app-tech-stack [groups]="techGroups" />
+    </app-page-section>
+
+    <app-page-section id="formacion" heading="Formación">
+      <app-education [items]="education" [certifications]="certifications" />
+    </app-page-section>
+
+    <app-page-section id="contacto" heading="Contacto">
+      <app-contact [profile]="profile" />
+    </app-page-section>
+  </main>
+
+  <footer>© {{ year }} {{ profile.firstNames }} {{ profile.lastNames }}.</footer>
+</div>

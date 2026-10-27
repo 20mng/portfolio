@@ -1,0 +1,19 @@
+.wrap {
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.prose {
+  max-width: 64ch;
+
+  p {
+    margin: 0 0 16px;
+  }
+}
+
+footer {
+  padding-block: 32px 48px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.88rem;
+}

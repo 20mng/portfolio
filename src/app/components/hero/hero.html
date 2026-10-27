@@ -1,0 +1,29 @@
+<section class="hero">
+  <div>
+    @if (profile().availability) {
+      <p class="status">{{ profile().availability }}</p>
+    }
+    <h1>
+      {{ profile().firstNames }}
+      <span>{{ profile().lastNames }}</span>
+    </h1>
+    <p class="role">{{ profile().role }}</p>
+    <p class="place">{{ profile().location }}</p>
+    <div class="actions">
+      <a class="btn primary" href="#contacto">Contactar</a>
+      <a class="btn" [href]="profile().contact.github" target="_blank" rel="noopener">Ver GitHub</a>
+    </div>
+  </div>
+
+  <div>
+    <div class="stack" role="list" aria-label="Mi stack por capas">
+      @for (layer of layers(); track layer.name; let i = $index) {
+        <div class="layer" role="listitem" [style.--i]="i">
+          <b>{{ layer.name }}</b>
+          <span>{{ layer.technologies.join(', ') }}</span>
+        </div>
+      }
+    </div>
+    <p class="stack-caption">De la interfaz al despliegue: trabajo en todas las capas.</p>
+  </div>
+</section>

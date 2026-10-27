@@ -1,0 +1,131 @@
+/* Paleta oliva (guiño a Jaén). Cada color es un token: el modo oscuro solo redefine valores. */
+:root {
+  --bg: #f4f5f1;
+  --surface: #ebede5;
+  --ink: #1c2118;
+  --muted: #5b6355;
+  --line: #d6dacd;
+  --olive: #55651c;
+  --olive-soft: #dfe5c6;
+  --layer-1: #c9d38f;
+  --layer-2: #a9b763;
+  --layer-3: #7f8f35;
+  --layer-4: #55651c;
+  --layer-ink: #1c2118;
+  --layer-ink-dark: #f4f5f1;
+
+  --font-display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Public Sans', 'Segoe UI', system-ui, sans-serif;
+  color-scheme: light;
+}
+
+@mixin dark-tokens {
+  --bg: #12160f;
+  --surface: #1b2017;
+  --ink: #e5e9dc;
+  --muted: #9da493;
+  --line: #2c3326;
+  --olive: #b8c86b;
+  --olive-soft: #283019;
+  --layer-1: #3a4420;
+  --layer-2: #4d5a24;
+  --layer-3: #6a7a2e;
+  --layer-4: #93a447;
+  --layer-ink: #e5e9dc;
+  --layer-ink-dark: #12160f;
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    @include dark-tokens;
+  }
+}
+:root[data-theme='dark'] {
+  @include dark-tokens;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  text-wrap: balance;
+  margin: 0;
+}
+
+a {
+  color: var(--olive);
+  text-underline-offset: 3px;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--olive);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Botones compartidos */
+.btn {
+  display: inline-block;
+  padding: 11px 20px;
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border: 1.5px solid var(--ink);
+  color: var(--ink);
+  background: transparent;
+  cursor: pointer;
+
+  &.primary {
+    background: var(--ink);
+    color: var(--bg);
+  }
+  &:hover {
+    background: var(--olive);
+    border-color: var(--olive);
+    color: var(--bg);
+  }
+  &.small {
+    font-size: 0.85rem;
+    padding: 4px 12px;
+  }
+}
+
+.tag {
+  font-size: 0.8rem;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--olive-soft);
+  color: var(--ink);
+}

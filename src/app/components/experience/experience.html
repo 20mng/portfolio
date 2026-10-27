@@ -1,0 +1,35 @@
+<ol class="timeline" reversed>
+  @for (job of jobs(); track job.company + job.period) {
+    <li class="job" [class.current]="job.current">
+      <h3>{{ job.role }}</h3>
+      <div class="company">{{ job.company }}</div>
+      <div class="when">{{ job.period }} · {{ job.location }}</div>
+
+      @for (project of job.projects ?? []; track project.name) {
+        <div class="project">
+          <h4>{{ project.name }}</h4>
+          <div class="tags">
+            @for (tag of project.tags; track tag) {
+              <span class="tag">{{ tag }}</span>
+            }
+          </div>
+          <ul>
+            @for (item of project.highlights; track item) {
+              <li>{{ item }}</li>
+            }
+          </ul>
+        </div>
+      }
+
+      @if (job.highlights?.length) {
+        <ul>
+          @for (item of job.highlights ?? []; track item) {
+            <li>{{ item }}</li>
+          }
+        </ul>
+      } @else if (!job.projects?.length) {
+        <p class="pending">Descripción pendiente.</p>
+      }
+    </li>
+  }
+</ol>
