@@ -64,8 +64,13 @@ import { techIconUrl } from './tech-icons';
       margin: 0 0 36px;
       padding: 0;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 12px;
+    }
+    @media (max-width: 760px) {
+      .core {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
     }
     .card {
       display: flex;
