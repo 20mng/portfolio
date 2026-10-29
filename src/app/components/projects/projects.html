@@ -95,7 +95,7 @@
 
             @if (project.links?.length) {
               <div class="links">
-                @for (link of project.links ?? []; track link.url) {
+                @for (link of project.links; track link.url) {
                   <a class="btn" [href]="link.url" target="_blank" rel="noopener">{{ link.label }}</a>
                 }
               </div>
