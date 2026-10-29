@@ -18,7 +18,7 @@ export const PROFILE: Profile = {
   // Pon aquí el nombre de tu foto (guárdala en la carpeta public), por ejemplo 'foto.jpg'.
   photo: null,
   // Pon aquí el nombre de tu CV en PDF (guárdalo en la carpeta public), por ejemplo 'cv.pdf'.
-  cv: null,
+  cv: 'cv.pdf',
   about: [
     'Soy desarrollador **Full Stack** y me gusta convertir problemas complejos en software claro, mantenible y escalable. Desde 2024 trabajo en **Nter Tech Services** donde desarrollo plataformas en Angular y mantengo aplicaciones Laravel para clientes institucionales como la **Universidad de Jaén**.',
     'Junto a la arquitectura frontend y el cloud, ahora estoy profundizando en **IA generativa**: Claude, APIs de LLMs, automatización de procesos y agentes en entornos de producción.',
