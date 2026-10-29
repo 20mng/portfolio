@@ -131,9 +131,11 @@ b {
 @media (max-width: 900px) {
   :host {
     grid-template-columns: 1fr;
+    /* Más abajo para dejar aire entre el título y la capa de arriba */
+    --drop: 100px;
   }
   .scene {
-    height: 360px;
+    height: 380px;
   }
   .legend {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -142,10 +144,10 @@ b {
 @media (max-width: 440px) {
   :host {
     --gap-base: 34px;
-    --drop: 50px;
+    --drop: 80px;
   }
   .scene {
-    height: 300px;
+    height: 320px;
   }
   .iso {
     width: 180px;

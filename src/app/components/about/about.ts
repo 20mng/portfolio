@@ -53,6 +53,7 @@ import { StackScene } from '../stack-scene/stack-scene';
     figcaption {
       display: grid;
       gap: 4px;
+      margin-bottom: 24px;
     }
     figcaption b {
       font: 700 1.15rem/1.3 var(--font-display);
