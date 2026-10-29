@@ -12,7 +12,7 @@ export const PROFILE: Profile = {
   initials: 'MNG',
   role: 'Full Stack Developer: Angular, Spring Boot y PHP',
   location: 'Jaén, España',
-  summary: 'Construyo aplicaciones web completas, de la interfaz a la base de datos, y cada vez más las combino con IA.',
+  summary: 'Desarrollo soluciones web completas, desde la interfaz hasta la base de datos, integrando capacidades de IA en flujos de trabajo.',
   // Cámbialo por 'Disponible para nuevas oportunidades' cuando estés buscando.
   status: 'Full Stack Developer',
   // Pon aquí el nombre de tu foto (guárdala en la carpeta public), por ejemplo 'foto.jpg'.
@@ -20,8 +20,8 @@ export const PROFILE: Profile = {
   // Pon aquí el nombre de tu CV en PDF (guárdalo en la carpeta public), por ejemplo 'cv.pdf'.
   cv: null,
   about: [
-    'Soy desarrollador **Full Stack** y me gusta convertir problemas complejos en software claro, mantenible y escalable. Desde 2024 trabajo en **Nter Tech Services**, donde desarrollo plataformas en Angular y mantengo aplicaciones Laravel para clientes institucionales como la **Universidad de Jaén**.',
-    'Junto a la arquitectura frontend y el cloud, ahora estoy profundizando en **IA generativa**: Claude, APIs de LLMs y automatización aplicada a flujos de trabajo reales.',
+    'Soy desarrollador **Full Stack** y me gusta convertir problemas complejos en software claro, mantenible y escalable. Desde 2024 trabajo en **Nter Tech Services** donde desarrollo plataformas en Angular y mantengo aplicaciones Laravel para clientes institucionales como la **Universidad de Jaén**.',
+    'Junto a la arquitectura frontend y el cloud, ahora estoy profundizando en **IA generativa**: Claude, APIs de LLMs, automatización de procesos y agentes en entornos de producción.',
   ],
   contact: {
     email: 'mengiibaar@gmail.com',
