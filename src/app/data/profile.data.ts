@@ -75,9 +75,9 @@ export const PROJECTS: ProjectCase[] = [
   {
     name: 'GSYA',
     context: 'Universidad de Jaén',
-    summary: 'Aplicación de gestión interna y control de accesos de la Universidad de Jaén.',
+    summary: 'Aplicación de gestión interna y control de accesos.',
     challenge:
-      'Transformar la operativa institucional sustituyendo herramientas fragmentadas por una solución centralizada, diseñada para gestionar credenciales, custodia documental y accesos físicos de forma segura, eficiente y escalable.',
+      'Diseñada para gestionar credenciales, custodia documental y accesos físicos de forma segura, eficiente y escalable.',
     contributions: [
       'Implementación y mantenimiento evolutivo de la plataforma central sobre Laravel y MySQL.',
       'Componentes interactivos con Livewire para la gestión segura de credenciales.',
@@ -90,8 +90,8 @@ export const PROJECTS: ProjectCase[] = [
   {
     name: 'YIYIT',
     context: 'Plataforma corporativa · Nter',
-    summary: 'Plataforma corporativa con módulos desarrollados desde cero en Angular.',
-    challenge: 'Integrar de forma ágil nuevos módulos y flujos de negocio sin comprometer el rendimiento de carga, la mantenibilidad del código ni la coherencia visual de la plataforma.',
+    summary: 'Plataforma corporativa con módulos desarrollados desde cero.',
+    challenge: 'Integrar de forma ágil nuevos módulos y flujos de negocio sin comprometer el rendimiento de carga.',
     contributions: [
       'Aplicaciones y módulos desde cero con arquitectura modular y reutilizable.',
       'Formularios complejos de varias secciones con su lógica de negocio.',

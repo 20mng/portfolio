@@ -45,6 +45,12 @@ export class Sidebar {
           const el = document.getElementById(item.id);
           if (el && el.getBoundingClientRect().top < window.innerHeight * 0.35) current = item.id;
         }
+        // Al llegar al final de la página se marca la última sección (Contacto),
+        // aunque por ser corta su título no llegue a subir hasta arriba.
+        const root = document.documentElement;
+        if (window.scrollY > 0 && window.innerHeight + window.scrollY >= root.scrollHeight - 4) {
+          current = this.sections().at(-1)?.id ?? current;
+        }
         if (current !== this.active()) this.active.set(current);
       });
     });
