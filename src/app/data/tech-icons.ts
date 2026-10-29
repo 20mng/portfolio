@@ -42,7 +42,7 @@ export const TECH_ICONS: Record<string, string> = {
 };
 
 /** Color de los iconos genéricos (los de marca llevan sus propios colores). */
-const GENERIC_ICON_COLOR = '#55651c';
+const GENERIC_ICON_COLOR = '#4d6116';
 
 export function techIconUrl(tech: string): string | null {
   const id = TECH_ICONS[tech];

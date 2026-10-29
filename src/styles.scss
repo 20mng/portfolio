@@ -1,44 +1,52 @@
-/* Paleta oliva (guiño a Jaén). Cada color es un token: el modo oscuro solo redefine valores. */
+/*
+ * Diseño v3 (profesional): columna fija a la izquierda y secciones a la derecha,
+ * sobre un fondo de curvas de nivel animadas con un foco de luz que sigue al ratón.
+ * Cada color es un token: el modo oscuro solo redefine valores.
+ */
 :root {
   --bg: #f4f5f1;
-  --surface: #ebede5;
-  --ink: #1c2118;
-  --muted: #5b6355;
-  --line: #d6dacd;
-  --olive: #55651c;
-  --olive-soft: #dfe5c6;
-  --layer-1: #c9d38f;
-  --layer-2: #a9b763;
-  --layer-3: #7f8f35;
-  --layer-4: #55651c;
-  --layer-5: #3d4a12;
-  --layer-ink: #1c2118;
-  --layer-ink-dark: #f4f5f1;
+  --surface: #ffffff;
+  --ink: #161a12;
+  --muted: #5d6457;
+  --faint: #8a9183;
+  --line: #e0e3d8;
+  --accent: #4d6116;
+  --accent-soft: #e6ebd3;
+  --glow: rgba(120, 145, 40, 0.1);
+  --contour: rgba(77, 97, 22, 0.13);
   --logo-bg: #ffffff;
-  --card: #fbfcf8;
+  --shadow: 0 1px 2px rgba(22, 26, 18, 0.04), 0 12px 32px rgba(22, 26, 18, 0.06);
+  /* Colores de las capas de la pila 3D (de la capa de arriba a la de abajo) */
+  --slab-1: #d3dc9c;
+  --slab-2: #b4c26c;
+  --slab-3: #8b9b3e;
+  --slab-4: #627222;
+  --slab-5: #3e4b10;
 
   --font-display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
   --font-body: 'Public Sans', 'Segoe UI', system-ui, sans-serif;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
   color-scheme: light;
 }
 
 @mixin dark-tokens {
-  --bg: #12160f;
-  --surface: #1b2017;
-  --ink: #e5e9dc;
-  --muted: #9da493;
-  --line: #2c3326;
-  --olive: #b8c86b;
-  --olive-soft: #283019;
-  --layer-1: #3a4420;
-  --layer-2: #4d5a24;
-  --layer-3: #6a7a2e;
-  --layer-4: #93a447;
-  --layer-5: #b8c86b;
-  --layer-ink: #e5e9dc;
-  --layer-ink-dark: #12160f;
+  --bg: #0d100b;
+  --surface: #151a12;
+  --ink: #e9ecdf;
+  --muted: #9aa290;
+  --faint: #727a69;
+  --line: #262c21;
+  --accent: #b9cc6a;
+  --accent-soft: #232b14;
+  --glow: rgba(185, 204, 106, 0.07);
+  --contour: rgba(185, 204, 106, 0.09);
   --logo-bg: #e9ecdf;
-  --card: #1b2017;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 12px 32px rgba(0, 0, 0, 0.35);
+  --slab-1: #2f381a;
+  --slab-2: #46521f;
+  --slab-3: #637428;
+  --slab-4: #8a9c3c;
+  --slab-5: #bccb6e;
   color-scheme: dark;
 }
 
@@ -59,11 +67,7 @@
 
 html {
   scroll-behavior: smooth;
-}
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
+  overflow-x: clip;
 }
 
 body {
@@ -71,11 +75,9 @@ body {
   background: var(--bg);
   color: var(--ink);
   font-family: var(--font-body);
-  font-size: 17px;
-  line-height: 1.6;
-  padding-left: max(16px, env(safe-area-inset-left, 0px));
-  padding-right: max(16px, env(safe-area-inset-right, 0px));
-  transition: background-color 0.25s ease, color 0.25s ease;
+  font-size: 16.5px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
 }
 
 h1,
@@ -83,55 +85,143 @@ h2,
 h3,
 h4 {
   font-family: var(--font-display);
-  text-wrap: balance;
   margin: 0;
+  text-wrap: balance;
 }
 
 a {
-  color: var(--olive);
-  text-underline-offset: 3px;
+  color: inherit;
 }
 
-a:focus-visible,
-button:focus-visible {
-  outline: 2px solid var(--olive);
+:focus-visible {
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
-  border-radius: 4px;
+  border-radius: 6px;
 }
 
-/* Botones compartidos */
+::selection {
+  background: var(--accent-soft);
+}
+
+/* ---------- Piezas compartidas ---------- */
+
 .btn {
-  display: inline-block;
-  padding: 11px 20px;
-  border-radius: 999px;
-  font: inherit;
-  font-weight: 600;
-  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 18px;
+  border-radius: 12px;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--bg);
+  font: 600 0.92rem/1 var(--font-body);
   text-decoration: none;
-  border: 1.5px solid var(--ink);
-  color: var(--ink);
-  background: transparent;
   cursor: pointer;
+  transition: transform 0.25s var(--ease), background-color 0.2s, border-color 0.2s, color 0.2s;
 
-  &.primary {
-    background: var(--ink);
-    color: var(--bg);
-  }
   &:hover {
-    background: var(--olive);
-    border-color: var(--olive);
-    color: var(--bg);
+    transform: translateY(-2px);
+    background: var(--accent);
+    border-color: var(--accent);
   }
-  &.small {
-    font-size: 0.85rem;
-    padding: 4px 12px;
+  &.ghost {
+    background: transparent;
+    color: var(--ink);
+    border-color: var(--line);
+  }
+  &.ghost:hover {
+    background: transparent;
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+  svg {
+    width: 16px;
+    height: 16px;
   }
 }
 
-.tag {
-  font-size: 0.8rem;
-  padding: 2px 10px;
-  border-radius: 999px;
-  background: var(--olive-soft);
+.icon-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--surface);
   color: var(--ink);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s, transform 0.25s var(--ease);
+
+  &:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+  }
+  svg {
+    width: 19px;
+    height: 19px;
+  }
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.tag {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.76rem;
+  font-weight: 600;
+}
+
+/* Etiqueta pequeña en mayúsculas (fechas, contexto de proyecto, títulos de grupo) */
+.eyebrow {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+/* ---------- Apariciones (directiva appReveal añade .in al entrar en pantalla) ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+  transition-delay: calc(var(--d, 0) * 80ms);
+
+  &.in {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- Transiciones de vista (cambio de tema y apertura de proyectos) ---------- */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-group(*) {
+  animation-duration: 0.5s;
+  animation-timing-function: var(--ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .btn,
+  .icon-btn {
+    transition: none;
+  }
 }

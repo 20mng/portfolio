@@ -1,0 +1,165 @@
+:host {
+  --rx: 0deg;
+  --rz: 0deg;
+  --explode: 0;
+  --gap-base: 40px;
+  --shift: 0px;
+  /* La pila se baja un poco para que al separarse no invada lo que tiene encima */
+  --drop: 70px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 28px;
+}
+
+/* Pila */
+.scene {
+  height: 400px;
+  display: grid;
+  place-items: center;
+  perspective: 1600px;
+}
+
+.iso {
+  position: relative;
+  left: var(--shift);
+  top: var(--drop);
+  width: 200px;
+  height: 125px;
+  transform-style: preserve-3d;
+  transform: rotateX(calc(58deg + var(--rx))) rotateZ(calc(-38deg + var(--rz)));
+  transition: transform 0.6s var(--ease);
+}
+
+.slab {
+  --gap: calc(var(--gap-base) + var(--explode) * 16px);
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  /* Estado inicial: todas las capas juntas. Con .ready se separan a su altura. */
+  transform: translateZ(0);
+  background: var(--c);
+  /* Grosor: la sombra se repite en pasos de 1px para formar un canto continuo,
+     de modo que cada capa se ve como un bloque macizo de una sola pieza.
+     Sigue la curva de las esquinas y no se separa al animar ni al resaltar. */
+  --edge: color-mix(in srgb, var(--c) 62%, #000);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+    -0.3px 1px 0 var(--edge),
+    -0.6px 2px 0 var(--edge),
+    -0.9px 3px 0 var(--edge),
+    -1.2px 4px 0 var(--edge),
+    -1.5px 5px 0 var(--edge),
+    -1.8px 6px 0 var(--edge),
+    -2.1px 7px 0 var(--edge),
+    -2.4px 8px 0 var(--edge),
+    -2.7px 9px 0 var(--edge),
+    -3.0px 10px 0 var(--edge);
+  transition: transform 0.7s var(--ease), filter 0.3s;
+
+  /* Resaltada (ratón sobre la capa o sobre su etiqueta): solo se ilumina */
+  &.hot {
+    filter: brightness(1.08);
+  }
+}
+
+:host(.ready) .slab {
+  transform: translateZ(calc(var(--z) * var(--gap)));
+  transition-delay: calc(var(--z) * 80ms + 300ms);
+}
+/* Tras la entrada, la separación por scroll responde sin retraso */
+:host(.ready.settled) .slab {
+  transition-delay: 0ms;
+  transition-duration: 0.25s;
+}
+/* Capa elevada (solo al pasar por su etiqueta de la leyenda: si se elevara al pasar por la
+   propia capa, se apartaría del cursor y parpadearía) */
+:host(.ready) .slab.raise {
+  transform: translateZ(calc(var(--z) * var(--gap) + 18px));
+}
+
+/* Leyenda */
+.legend {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+
+  li {
+    display: grid;
+    grid-template-columns: 14px 1fr;
+    gap: 2px 12px;
+    align-items: center;
+    padding: 8px 12px;
+    border-radius: 10px;
+    cursor: default;
+    transition: background-color 0.2s;
+  }
+  li.lift {
+    background: var(--accent-soft);
+  }
+}
+.swatch {
+  grid-row: span 2;
+  align-self: start;
+  margin-top: 4px;
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  background: var(--c);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--ink) 12%, transparent);
+  transition: transform 0.25s var(--ease);
+}
+li.lift .swatch {
+  transform: scale(1.25) rotate(8deg);
+}
+b {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+.techs {
+  grid-column: 2;
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.3;
+}
+
+@media (max-width: 900px) {
+  :host {
+    grid-template-columns: 1fr;
+  }
+  .scene {
+    height: 360px;
+  }
+  .legend {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 440px) {
+  :host {
+    --gap-base: 34px;
+    --drop: 50px;
+  }
+  .scene {
+    height: 300px;
+  }
+  .iso {
+    width: 180px;
+    height: 112px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .iso,
+  .slab,
+  .swatch {
+    transition: none !important;
+  }
+  .slab {
+    transform: translateZ(calc(var(--z) * var(--gap-base))) !important;
+  }
+}

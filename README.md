@@ -24,17 +24,24 @@ Todos los textos están en `src/app/data/profile.data.ts`: presentación, experi
 
 ```
 src/app/
-  data/            contenido (profile.data.ts) y tipos (profile.model.ts)
-  core/            servicio de tema claro/oscuro
+  data/            contenido (profile.data.ts), tipos y logos de tecnologías
+  core/            tema claro/oscuro, apariciones al hacer scroll y utilidades
   components/
-    site-header/   cabecera con navegación y cambio de tema
-    hero/          portada con la pila de tecnologías
-    page-section/  contenedor reutilizable de cada sección
-    experience/    línea temporal de trabajos
-    tech-stack/    tecnologías agrupadas
-    education/     formación y certificaciones
-    contact/       contacto
+    backdrop/        fondo de curvas de nivel, foco de luz y barra de progreso
+    sidebar/         columna fija de la izquierda (identidad, navegación, acciones)
+    section-block/   cabecera numerada de cada sección
+    about/           sobre mí y cifras
+    experience/      experiencia
+    projects/        proyectos y su detalle
+    stack/           tecnologías por áreas
+    education/       formación y certificaciones
+    contact/         contacto y pie
 ```
+
+## Foto y CV
+
+- Foto: guarda la imagen en `public/` (por ejemplo `public/foto.jpg`) y pon `photo: 'foto.jpg'` en `profile.data.ts`.
+- CV: guarda el PDF en `public/` (por ejemplo `public/cv.pdf`) y pon `cv: 'cv.pdf'`. Aparecerá el botón "Descargar CV".
 
 ## Compilar para publicar
 

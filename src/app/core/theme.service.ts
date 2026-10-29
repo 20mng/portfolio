@@ -1,6 +1,6 @@
 import { Injectable, computed, effect, signal } from '@angular/core';
 
-type Theme = 'light' | 'dark';
+export type Theme = 'light' | 'dark';
 const STORAGE_KEY = 'theme';
 
 /** Tema claro/oscuro: sigue al sistema hasta que el usuario elige uno. */
@@ -32,10 +32,17 @@ export class ThemeService {
   }
 
   toggle(): void {
-    const next: Theme = this.current() === 'dark' ? 'light' : 'dark';
-    this.chosen.set(next);
+    this.set(this.current() === 'dark' ? 'light' : 'dark');
+  }
+
+  set(theme: Theme): void {
+    this.chosen.set(theme);
+    // También se aplica al momento (sin esperar al efecto) para que las transiciones de vista lo capturen.
+    document.documentElement.setAttribute('data-theme', theme);
+    // También se aplica al momento (sin esperar al efecto) para que las transiciones de vista lo capturen.
+    document.documentElement.setAttribute('data-theme', theme);
     try {
-      localStorage.setItem(STORAGE_KEY, next);
+      localStorage.setItem(STORAGE_KEY, theme);
     } catch {
       /* almacenamiento no disponible: el tema se mantiene solo en esta visita */
     }

@@ -1,0 +1,43 @@
+<div class="stack" appReveal>
+  <div class="tabs" role="tablist" aria-label="Áreas" aria-orientation="vertical" (keydown)="onKey($event)">
+    @for (group of groups(); track group.name; let i = $index) {
+      <button
+        type="button"
+        role="tab"
+        class="tab"
+        [id]="'stack-tab-' + i"
+        [class.active]="selected() === i"
+        [attr.aria-selected]="selected() === i"
+        [attr.tabindex]="selected() === i ? 0 : -1"
+        aria-controls="stack-panel"
+        (click)="select(i)"
+      >
+        <span class="num">{{ pad(i + 1) }}</span>
+        <span class="name">{{ group.name }}</span>
+        <span class="count">{{ group.items.length }}</span>
+      </button>
+    }
+  </div>
+
+  <div class="panel" id="stack-panel" role="tabpanel" [attr.aria-labelledby]="'stack-tab-' + selected()">
+    @if (current(); as group) {
+      <!-- La lista se vuelve a crear al cambiar de pestaña, para que las fichas entren escalonadas -->
+      @for (key of [group.name]; track key) {
+        <ul class="tiles">
+          @for (tech of group.items; track tech; let j = $index) {
+            <li class="tile" [style.--j]="j">
+              <span class="logo" aria-hidden="true">
+                @if (icon(tech); as src) {
+                  <img [src]="src" alt="" width="28" height="28" loading="lazy" (error)="markFailed(tech)" />
+                } @else {
+                  {{ initialsOf(tech) }}
+                }
+              </span>
+              <span class="label">{{ tech }}</span>
+            </li>
+          }
+        </ul>
+      }
+    }
+  </div>
+</div>

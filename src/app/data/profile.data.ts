@@ -1,21 +1,27 @@
 /**
  * TODO EL CONTENIDO DE LA WEB ESTÁ AQUÍ.
- * Para cambiar textos, añadir un trabajo o una tecnología, edita solo este archivo.
+ * Para cambiar textos, añadir un trabajo, un proyecto o una tecnología, edita solo este archivo.
  */
-import { CoreTech, Education, Job, Profile, StackLayer, TechGroup } from './profile.model';
+import { Job, Profile, ProjectCase, StackLayer, TechGroup } from './profile.model';
 
 export const PROFILE: Profile = {
   firstNames: 'Francisco Jesús',
   lastNames: 'Mengíbar Gutiérrez',
   shortName: 'Francisco Mengíbar',
+  fullName: 'Francisco Jesús Mengíbar Gutiérrez',
+  initials: 'MNG',
   role: 'Full Stack Developer: Angular, Spring Boot y PHP',
-  location: 'Jaén, España.',
-  // Pon null cuando no estés buscando empleo y desaparece el aviso.
-  // availability: 'Disponible para nuevas oportunidades',
-  availability: null,
+  location: 'Jaén, España',
+  summary: 'Construyo aplicaciones web completas, de la interfaz a la base de datos, y cada vez más las combino con IA.',
+  // Cámbialo por 'Disponible para nuevas oportunidades' cuando estés buscando.
+  status: 'Full Stack Developer',
+  // Pon aquí el nombre de tu foto (guárdala en la carpeta public), por ejemplo 'foto.jpg'.
+  photo: null,
+  // Pon aquí el nombre de tu CV en PDF (guárdalo en la carpeta public), por ejemplo 'cv.pdf'.
+  cv: null,
   about: [
-    'Soy desarrollador Full Stack especializado en transformar problemas complejos en soluciones de software sólidas y escalables. En Nter Tech Services (desde 2024) desarrollo plataformas en Angular y mantengo entornos Laravel para clientes institucionales como la Universidad de Jaén.',
-    'Junto a mi foco en arquitectura frontend y cloud, actualmente estoy profundizando al máximo en IA generativa (Claude, APIs de LLMs y automatización inteligente), explorando cómo integrarla de forma práctica en flujos de trabajo y arquitecturas modernas.',
+    'Soy desarrollador **Full Stack** y me gusta convertir problemas complejos en software claro, mantenible y escalable. Desde 2024 trabajo en **Nter Tech Services**, donde desarrollo plataformas en Angular y mantengo aplicaciones Laravel para clientes institucionales como la **Universidad de Jaén**.',
+    'Junto a la arquitectura frontend y el cloud, ahora estoy profundizando en **IA generativa**: Claude, APIs de LLMs y automatización aplicada a flujos de trabajo reales.',
   ],
   contact: {
     email: 'mengiibaar@gmail.com',
@@ -24,100 +30,93 @@ export const PROFILE: Profile = {
   },
 };
 
+export const EXPERIENCE: Job[] = [
+  {
+    role: 'Full Stack Developer',
+    company: 'Nter Tech Services',
+    period: '2024 — Hoy',
+    location: 'Jaén',
+    current: true,
+    highlights: [
+      'Desarrollo de la plataforma corporativa YIYIT en Angular y Spring Boot.',
+      'Mantenimiento evolutivo de GSYA, la aplicación de gestión interna de la Universidad de Jaén, en Laravel.',
+      'Automatización de tareas con agentes y herramientas de IA.',
+    ],
+    tags: ['Angular', 'Spring Boot', 'Laravel', 'MySQL', 'AWS', 'Claude'],
+    projects: ['GSYA', 'YIYIT'],
+  },
+  {
+    role: 'Desarrollador de aplicaciones web',
+    company: 'Gestoría Multimedia, Agencia MKT 360º',
+    period: 'Abr — Jun 2024',
+    location: 'Jaén',
+    highlights: [
+      'Desarrollo y maquetación de sitios web a medida con WordPress.',
+      'Optimización de rendimiento web (WPO), reduciendo tiempos de carga y mejorando puntuaciones en Google PageSpeed.',
+      'SEO técnico y on-page (arquitectura web, indexación, metaetiquetas y datos estructurados) y analítica con Google Analytics 4 y Search Console.',
+    ],
+    tags: ['WordPress', 'SEO técnico', 'Google Analytics 4'],
+  },
+  {
+    role: 'Técnico de sistemas informáticos',
+    company: 'Software DELSOL',
+    period: 'Abr — Jun 2022',
+    location: 'Jaén',
+    highlights: [
+      'Administración y soporte de infraestructura cloud en Microsoft Azure (máquinas virtuales, almacenamiento y monitorización básica).',
+      'Gestión de usuarios, permisos, directivas de grupo (GPO) y control de accesos mediante Active Directory y Azure AD.',
+      'Mantenimiento preventivo y correctivo de servidores locales (Windows Server / Linux) y estaciones de trabajo.',
+    ],
+    tags: ['Azure', 'Active Directory', 'Windows Server', 'Linux'],
+  },
+];
+
+export const PROJECTS: ProjectCase[] = [
+  {
+    name: 'GSYA',
+    context: 'Universidad de Jaén',
+    summary: 'Aplicación de gestión interna y control de accesos de la Universidad de Jaén.',
+    challenge:
+      'Transformar la operativa institucional sustituyendo herramientas fragmentadas por una solución centralizada, diseñada para gestionar credenciales, custodia documental y accesos físicos de forma segura, eficiente y escalable.',
+    contributions: [
+      'Implementación y mantenimiento evolutivo de la plataforma central sobre Laravel y MySQL.',
+      'Componentes interactivos con Livewire para la gestión segura de credenciales.',
+      'Integración con AWS S3 para la documentación y con SALTO para el control de accesos físico.',
+      'Automatización de tareas repetitivas mediante agentes y herramientas de IA.',
+    ],
+    tags: ['Laravel', 'Livewire', 'AWS S3', 'MySQL', 'Claude'],
+    colors: ['#33461a', '#7a9a2e', '#c9d77e'],
+  },
+  {
+    name: 'YIYIT',
+    context: 'Plataforma corporativa · Nter',
+    summary: 'Plataforma corporativa con módulos desarrollados desde cero en Angular.',
+    challenge: 'Integrar de forma ágil nuevos módulos y flujos de negocio sin comprometer el rendimiento de carga, la mantenibilidad del código ni la coherencia visual de la plataforma.',
+    contributions: [
+      'Aplicaciones y módulos desde cero con arquitectura modular y reutilizable.',
+      'Formularios complejos de varias secciones con su lógica de negocio.',
+      'Rediseño de funcionalidades existentes para mejorar la experiencia de usuario y la mantenibilidad.',
+      'Mejora del rendimiento reduciendo y optimizando las peticiones a las APIs.',
+    ],
+    tags: ['Angular', 'TypeScript', 'SCSS', 'Spring Boot', 'MySQL'],
+    colors: ['#1f2a3a', '#4c6a9a', '#a7c0e6'],
+  },
+];
+
+/** Capas de la pila 3D de "Sobre mí", de arriba a abajo. */
 export const STACK_LAYERS: StackLayer[] = [
   { name: 'Frontend', technologies: ['Angular', 'TypeScript', 'Livewire'] },
-  { name: 'Backend', technologies: ['Spring Boot', 'Java', 'Laravel', 'PHP'] },
+  { name: 'Backend', technologies: ['Java','Spring Boot', 'Laravel', 'PHP'] },
   { name: 'Datos', technologies: ['MySQL'] },
   { name: 'Cloud', technologies: ['Docker', 'AWS'] },
   { name: 'IA', technologies: ['Claude', 'APIs de LLMs'] },
 ];
 
-export const EXPERIENCE: Job[] = [
-  {
-    role: 'Full Stack Developer',
-    company: 'Nter Tech Services',
-    period: 'Septiembre 2024 – actualidad',
-    location: 'Jaén',
-    current: true,
-    projects: [
-      {
-        name: 'GSYA, Universidad de Jaén',
-        tags: ['Laravel', 'AWS S3', 'MySQL', 'Claude'],
-        highlights: [
-          'Desarrollo y mantenimiento evolutivo de una aplicación de gestión interna.',
-          'Componentes interactivos con Livewire para la gestión segura de credenciales.',
-          'Integración con AWS S3 para documentación y con SALTO para el control de accesos.',
-          'Automatización de tareas repetitivas mediante agentes y herramientas de IA.',
-        ],
-      },
-      {
-        name: 'YIYIT, plataforma corporativa',
-        tags: ['Angular', 'SCSS', 'Spring Boot', 'MySQL'],
-        highlights: [
-          'Desarrollo desde cero de aplicaciones y módulos con arquitectura modular y reutilizable.',
-          'Formularios complejos de varias secciones con su lógica de negocio.',
-          'Rediseño de funcionalidades existentes para mejorar la experiencia de usuario y la mantenibilidad.',
-          'Mejora del rendimiento reduciendo y optimizando las peticiones a APIs.',
-        ],
-      },
-    ],
-  },
-  {
-    role: 'Desarrollador de aplicaciones web',
-    company: 'Gestoría Multimedia, Agencia MKT 360º',
-    period: 'Abril – junio 2024',
-    location: 'Jaén',
-    highlights: [
-      'Desarrollo y maquetación de sitios web a medida con WordPress.',
-      'Optimización de rendimiento web (WPO), reduciendo tiempos de carga y mejorando puntuaciones en Google PageSpeed.',
-      'Implementación de estrategias de SEO técnico y on-page (arquitectura web, indexación, metaetiquetas y structured data).',
-    ],
-  },
-  {
-    role: 'Técnico de sistemas informáticos',
-    company: 'Software DELSOL',
-    period: 'Abril – junio 2022',
-    location: 'Jaén',
-    highlights: [
-      'Administración y soporte de infraestructura cloud en Microsoft Azure (máquinas virtuales, almacenamiento y monitorización básica).',
-      'Gestión de usuarios, permisos, directivas de grupo (GPO) y control de accesos mediante Active Directory y Azure AD.',
-      'Mantenimiento preventivo y correctivo de servidores locales (Windows Server / Linux) y estaciones de trabajo de la plantilla.',
-    ],
-  },
-];
-
-  export const CORE_STACK: CoreTech[] = [
-    { name: 'Angular', description: 'Frontend y componentes' },
-    { name: 'TypeScript', description: 'Tipado en todo el frontend' },
-    { name: 'Spring Boot', description: 'APIs y backend en Java' },
-    { name: 'Laravel', description: 'Backend PHP con Livewire' },
-    { name: 'MySQL', description: 'Bases de datos relacionales' },
-    { name: 'Docker', description: 'Entornos y despliegues' },
-    { name: 'AWS', description: 'Almacenamiento y cloud' },
-    { name: 'Claude', description: 'IA para desarrollo y automatización' },
-  ];
-
 export const TECH_GROUPS: TechGroup[] = [
   { name: 'Frontend', items: ['Angular', 'TypeScript', 'JavaScript', 'HTML', 'CSS', 'Livewire'] },
-  { name: 'Backend', items: ['Spring Boot', 'Java', 'PHP', 'Laravel'] },
+  { name: 'Backend', items: ['Java', 'Spring Boot', 'PHP', 'Laravel'] },
   { name: 'Datos y cloud', items: ['MySQL', 'Docker', 'AWS', 'Azure'] },
   { name: 'IA', items: ['Claude', 'Google Gemini', 'ChatGPT'] },
   { name: 'Web y CMS', items: ['WordPress', 'SEO técnico', 'Google Analytics 4', 'Search Console'] },
-  { name: 'Sistemas', items: ['Windows Server', 'Linux', 'Active Directory', 'Redes'] },
-  { name: 'Forma de trabajo', items: ['Metodologías ágiles', 'Git', 'Trello'] },
-];
-
-export const EDUCATION: Education[] = [
-  {
-    title: 'CFGS Desarrollo de Aplicaciones Web',
-    center: 'IES Las Fuentezuelas',
-    period: '2022 – 2024',
-  },
-];
-
-export const CERTIFICATIONS: string[] = [
-  'Java desde 0: Orientación a Objetos',
-  'Java 18: colecciones concurrentes',
-  'Programación funcional en Java 18: API Optional y métodos de referencia',
-  'CRUD con PHP, MySQL, HTML, CSS y JavaScript',
+  { name: 'Sistemas y herramientas', items: ['Windows Server', 'Linux', 'Active Directory', 'Git', 'Trello', 'Metodologías ágiles'] },
 ];

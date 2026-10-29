@@ -1,33 +1,28 @@
-<div class="wrap">
-  <app-site-header [name]="profile.shortName" />
+<app-backdrop />
+<app-theme-toggle />
 
-  <main>
-    <app-hero [profile]="profile" [layers]="layers" />
+<div class="layout">
+  <app-sidebar [profile]="profile" [sections]="sections" />
 
-    <app-page-section id="sobre-mi" heading="Sobre mí">
-      <div class="prose">
-        @for (paragraph of profile.about; track $index) {
-          <p>{{ paragraph }}</p>
-        }
-      </div>
-    </app-page-section>
+  <main class="content">
+    <app-section-block id="sobre-mi" index="01" heading="Sobre mí">
+      <app-about [profile]="profile" [layers]="layers" />
+    </app-section-block>
 
-    <app-page-section id="experiencia" heading="Experiencia">
+    <app-section-block id="experiencia" index="02" heading="Experiencia">
       <app-experience [jobs]="experience" />
-    </app-page-section>
+    </app-section-block>
 
-    <app-page-section id="tecnologias" heading="Tecnologías">
-        <app-tech-stack [core]="coreStack" [groups]="techGroups" />
-    </app-page-section>
+    <app-section-block id="proyectos" index="03" heading="Proyectos">
+      <app-projects [projects]="projects" />
+    </app-section-block>
 
-    <!-- <app-page-section id="formacion" heading="Formación">
-      <app-education [items]="education" [certifications]="certifications" />
-    </app-page-section> -->
+    <app-section-block id="stack" index="04" heading="Stack">
+      <app-stack [groups]="techGroups" />
+    </app-section-block>
 
-    <app-page-section id="contacto" heading="Contacto">
+    <app-section-block id="contacto" index="05" heading="Contacto" class="last">
       <app-contact [profile]="profile" />
-    </app-page-section>
+    </app-section-block>
   </main>
-
-  <footer>© {{ year }} {{ profile.firstNames }} {{ profile.lastNames }}.</footer>
 </div>
